@@ -21,5 +21,6 @@ from datasetmanager import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('upload/', views.upload, name='upload')
+    path('upload/', views.upload, name='upload'),
+    path('login/', views.login, name='login'),
 ]
