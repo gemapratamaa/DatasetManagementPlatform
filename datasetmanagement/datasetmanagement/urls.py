@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 
 from datasetmanager import views
+from . import settings
+from django.templatetags.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_page, name='index'),
     path('upload/', views.upload_page, name='upload'),
     path('login/', views.login_page, name='login'),
-]
+    path('download/', views.download_page, name='download'),
+] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

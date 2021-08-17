@@ -88,6 +88,7 @@ class User(AbstractBaseUser):
 
 
 
+
 class Task(models.Model):
     name = models.CharField(max_length=30)
     user = models.ForeignKey(
@@ -104,6 +105,7 @@ class Task(models.Model):
     is_deleted = models.BooleanField(default=False)
 
 class Dataset(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=300)
     """
     user = models.ForeignKey(
@@ -117,7 +119,7 @@ class Dataset(models.Model):
     )
 
     def __str__(self):
-        return str(self.name)
+        return "[{}] {}".format(id, name)
         
 
 class DatasetUploadForm(ModelForm):
