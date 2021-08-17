@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import AbstractUser, BaseUserManager, AbstractBaseUser
+from django.forms import ModelForm
 
 # Create your models here.
 # class DatasetUser(models.Model):
@@ -104,11 +105,18 @@ class Task(models.Model):
 
 class Dataset(models.Model):
     name = models.CharField(max_length=30)
+    """
     user = models.ForeignKey(
         'User',
         on_delete=models.CASCADE,
     )
+    """
     file = models.FileField(
         upload_to='datasets/', 
         validators=[FileExtensionValidator(allowed_extensions=['zip'])]
     )
+
+class DatasetUploadForm(ModelForm):
+    class Meta: 
+        model = Dataset
+        fields = ('file',)

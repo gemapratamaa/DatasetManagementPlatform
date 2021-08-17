@@ -20,7 +20,7 @@ from datasetmanager import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('upload/', views.upload, name='upload'),
+    path('', views.index_page, name='index'),
+    path('upload/', views.upload_page, name='upload'),
     path('login/', views.login_page, name='login'),
 ]

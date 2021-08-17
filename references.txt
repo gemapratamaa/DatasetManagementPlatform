@@ -1,0 +1,5 @@
+https://www.py4u.net/discuss/1259285
+https://www.codingforentrepreneurs.com/blog/how-to-create-a-custom-django-user-model
+https://afrizalmy.com/login-register-django
+https://himanshuxd.medium.com/how-to-create-registration-login-webapp-with-django-2-0-fd33dc7a6c67
+https://stackoverflow.com/questions/15846120/uploading-a-file-in-django-with-modelforms
