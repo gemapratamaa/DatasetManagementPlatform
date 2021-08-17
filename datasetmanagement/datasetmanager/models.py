@@ -105,6 +105,8 @@ class Task(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['zip'])]
     )
 
+    is_deleted = models.BooleanField(default=False)
+
 class Dataset(models.Model):
     name = models.CharField(max_length=30)
     user = models.ForeignKey(
