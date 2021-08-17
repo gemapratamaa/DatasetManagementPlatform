@@ -119,7 +119,7 @@ class Dataset(models.Model):
     )
 
     def __str__(self):
-        return "[{}] {}".format(id, name)
+        return "[{}] {}".format(self.id, self.name)
         
 
 class DatasetUploadForm(ModelForm):

@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from .forms import *
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import FileResponse, Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from datasetmanagement import settings
+import os
 # Create your views here.
 
 
@@ -62,8 +64,19 @@ def download_page(request):
     }
     return render(request, 'download.html', arguments)
 
-def download(request, id):
-    
+"""
+def download_zip(request, zip_id):
+    obj = Dataset.objects.get(id=zip_id)
     filename = obj.model_attribute_name.path
     response = FileResponse(open(filename, 'rb'))
     return response
+"""
+def download(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type='application/datasetupload')
+            response['Content-Disposition'] = 'inline;filename=' + os.path.basename(file_path)
+            return response
+
+    raise Http404

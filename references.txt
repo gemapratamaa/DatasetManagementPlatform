@@ -3,3 +3,10 @@ https://www.codingforentrepreneurs.com/blog/how-to-create-a-custom-django-user-m
 https://afrizalmy.com/login-register-django
 https://himanshuxd.medium.com/how-to-create-registration-login-webapp-with-django-2-0-fd33dc7a6c67
 https://stackoverflow.com/questions/15846120/uploading-a-file-in-django-with-modelforms
+https://stackoverflow.com/questions/10729397/how-to-get-name-of-file-in-request-post
+https://stackoverflow.com/questions/36392510/django-download-a-file/36394206
+https://www.codegrepper.com/code-examples/python/frameworks/django/change+value+of+field+while+fo
+https://studygyaan.com/django/how-to-upload-and-download-files-in-django
+https://stackoverflow.com/questions/18064973/id-field-in-model-django
+https://stackoverflow.com/questions/36392510/django-download-a-file/36394206
+https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html <- COBA CEK

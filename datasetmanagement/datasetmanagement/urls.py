@@ -19,6 +19,8 @@ from django.urls import path
 from datasetmanager import views
 from . import settings
 from django.templatetags.static import static
+from django.views.static import serve
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +28,9 @@ urlpatterns = [
     path('upload/', views.upload_page, name='upload'),
     path('login/', views.login_page, name='login'),
     path('download/', views.download_page, name='download'),
-] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^download/(?P<path>.*)$', serve, {
+        'document_root' : settings.MEDIA_ROOT
+    })
+]
+
+ #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
