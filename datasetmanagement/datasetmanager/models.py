@@ -46,7 +46,6 @@ class UserManager(BaseUserManager):
         return user
 
 
-
 class User(AbstractBaseUser):
     email = models.CharField(
         verbose_name='email address',
@@ -73,23 +72,17 @@ class User(AbstractBaseUser):
         return self.email
 
     def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
         return True
 
     def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
         return True
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
         return self.staff
 
     @property
     def is_admin(self):
-        "Is the user a admin member?"
         return self.admin
 
 
@@ -102,7 +95,9 @@ class Task(models.Model):
     )
     file = models.FileField(
         upload_to='tasks/', 
-        validators=[FileExtensionValidator(allowed_extensions=['zip'])]
+        validators=[
+            FileExtensionValidator(allowed_extensions=['zip'])
+        ]
     )
 
     is_deleted = models.BooleanField(default=False)

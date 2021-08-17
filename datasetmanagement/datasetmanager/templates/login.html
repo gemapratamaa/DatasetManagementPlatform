@@ -7,14 +7,10 @@
 </head>    
 <body>    
     <h1>User Login</h1> 
-    <form>  
+    <form method="post">
+    {% csrf_token %}  
         <div class="container">   
-            <label>Username: </label>   
-            <input type="text" placeholder="Enter Username" name="username" required>  
-            <br>
-            <label>Password: </label>   
-            <input type="password" placeholder="Enter Password" name="password" required>  
-            <br>
+            {{ form.as_p }}
             <button type="submit">Login</button>   
         </div>   
     </form>     
