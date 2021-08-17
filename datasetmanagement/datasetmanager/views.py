@@ -36,9 +36,16 @@ def upload_page(request):
         
         form = DatasetUploadForm(request.POST, request.FILES)
         if form.is_valid():
+            data_to_submit = form.save(commit=False)
+            file_name = request.FILES['file'].name
+            data_to_submit.name = file_name
+            data_to_submit.save()
             print("[upload page] request.post: ", request.POST)
             print("[upload page] request.files: ", request.FILES)
-            form.save()
+            print("[upload page] request.files['file']: ", request.FILES['file'], type(request.FILES['file']))
+            print("[upload page] file name: ", request.FILES['file'].name, type(request.FILES['file'].name))
+            #form.save()
+            return HttpResponse("Upload success") # TODO GANTI
            
         #form = DatasetUploadForm(request.POST, request.FILES)
         #if form.is_valid():
@@ -49,4 +56,14 @@ def upload_page(request):
     return render(request, 'upload.html', arguments)
 
 def download_page(request):
-    return render(request, 'download.html')
+    datasets = Dataset.objects.all()
+    arguments = {
+        'datasets' : datasets
+    }
+    return render(request, 'download.html', arguments)
+
+def download(request, id):
+    
+    filename = obj.model_attribute_name.path
+    response = FileResponse(open(filename, 'rb'))
+    return response

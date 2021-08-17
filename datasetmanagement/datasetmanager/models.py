@@ -104,7 +104,7 @@ class Task(models.Model):
     is_deleted = models.BooleanField(default=False)
 
 class Dataset(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=300)
     """
     user = models.ForeignKey(
         'User',
@@ -115,6 +115,10 @@ class Dataset(models.Model):
         upload_to='datasets/', 
         validators=[FileExtensionValidator(allowed_extensions=['zip'])]
     )
+
+    def __str__(self):
+        return str(self.name)
+        
 
 class DatasetUploadForm(ModelForm):
     class Meta: 
