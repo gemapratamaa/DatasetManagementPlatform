@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from .forms import *
 from django.http.response import FileResponse, Http404, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from datasetmanagement import settings
+from django.contrib.auth.decorators import login_required
+
+
 import os
 
 def index_page(request):
@@ -27,13 +30,13 @@ def login_page(request):
             return HttpResponse("Invalid login details given")
 
     return render(request, 'login.html', arguments)
-    
+
+@login_required
 def upload_page(request):
     arguments = dict()
     arguments['form'] = DatasetUploadForm(request.POST, request.FILES)
 
     if request.method == 'POST':
-        
         form = DatasetUploadForm(request.POST, request.FILES)
         if form.is_valid():
             data_to_submit = form.save(commit=False)
@@ -44,15 +47,22 @@ def upload_page(request):
             print("[upload page] request.files: ", request.FILES)
             print("[upload page] request.files['file']: ", request.FILES['file'], type(request.FILES['file']))
             print("[upload page] file name: ", request.FILES['file'].name, type(request.FILES['file'].name))
-            return HttpResponse("Upload success") # TODO GANTI
+            # return HttpResponse("Upload success") # TODO GANTI
+            return redirect('/logout')
     else:
         form = DatasetUploadForm()
 
     return render(request, 'upload.html', arguments)
 
+@login_required
 def download_page(request):
     datasets = Dataset.objects.all()
     arguments = {
         'datasets' : datasets
     }
     return render(request, 'download.html', arguments)
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('/home')
