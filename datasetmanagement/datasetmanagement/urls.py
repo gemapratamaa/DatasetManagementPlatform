@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^download/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT
     }),
-    url(r'^datasets/datasets/(?P<path>.*)$', serve, {
+    url(r'^datasets/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT
     })
 ]

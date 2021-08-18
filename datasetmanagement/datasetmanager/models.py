@@ -113,8 +113,13 @@ class Dataset(models.Model):
         on_delete=models.CASCADE,
     )
     """
+
+    # kalo upload_to datasets/, masuknya ke datasetmanagement\datasets_cdn\datasets, expectnya datasetmanagement\datasets_cdn\
+    # kalo gapake, masuknya ke datasetmanagement\datasets_cdn, tp pas donlot expectnya 
+
+
     file = models.FileField(
-        # upload_to='datasets/',  <------
+        upload_to='',
         validators=[FileExtensionValidator(allowed_extensions=['zip'])]
     )
 
