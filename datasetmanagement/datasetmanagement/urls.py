@@ -15,6 +15,7 @@ urlpatterns = [
     path('upload/', views.upload_page, name='upload'),
     path('login/', views.login_page, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('upload_success', views.upload_success, name='upload_success'),
     path('download/', views.download_page, name='download'),
     url(r'^datasets/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT

@@ -7,7 +7,6 @@ from django.urls import reverse
 from datasetmanagement import settings
 from django.contrib.auth.decorators import login_required
 
-
 import os
 
 def index_page(request):
@@ -32,13 +31,19 @@ def login_page(request):
     return render(request, 'login.html', arguments)
 
 @login_required
+def upload_success(request):
+    return render(request, 'upload_success.html')
+
+
+@login_required
 def upload_page(request):
     arguments = dict()
     arguments['form'] = DatasetUploadForm(request.POST, request.FILES)
-
     if request.method == 'POST':
         form = DatasetUploadForm(request.POST, request.FILES)
         if form.is_valid():
+            user_email = request.user.email # SUKSES
+            print("user email/username: ", user_email)
             data_to_submit = form.save(commit=False)
             file_name = request.FILES['file'].name
             data_to_submit.name = file_name
@@ -48,7 +53,7 @@ def upload_page(request):
             print("[upload page] request.files['file']: ", request.FILES['file'], type(request.FILES['file']))
             print("[upload page] file name: ", request.FILES['file'].name, type(request.FILES['file'].name))
             # return HttpResponse("Upload success") # TODO GANTI
-            return redirect('/logout')
+            return redirect('/upload_success')
     else:
         form = DatasetUploadForm()
 

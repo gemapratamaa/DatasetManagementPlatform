@@ -95,7 +95,11 @@ class Dataset(models.Model):
         upload_to='',
         validators=[FileExtensionValidator(allowed_extensions=['zip'])]
     )
-
+    uploader = models.ForeignKey(
+        'User',
+        on_delete=models.CASCADE,
+    )
+    
     def __str__(self):
         return "[{}] {}".format(self.id, self.name)
 
