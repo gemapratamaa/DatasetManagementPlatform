@@ -103,7 +103,7 @@ class Dataset(models.Model):
     )
 
     def __str__(self):
-        return "[{}] {}".format(self.id, self.name)
+        return "[{}] {}".format(self.file_id, self.name)
 
 class DatasetUploadForm(ModelForm):
     class Meta: 
