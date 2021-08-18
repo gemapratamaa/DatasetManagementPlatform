@@ -114,7 +114,7 @@ class Dataset(models.Model):
     )
     """
     file = models.FileField(
-        upload_to='datasets/', 
+        # upload_to='datasets/',  <------
         validators=[FileExtensionValidator(allowed_extensions=['zip'])]
     )
 

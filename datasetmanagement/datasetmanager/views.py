@@ -71,12 +71,22 @@ def download_zip(request, zip_id):
     response = FileResponse(open(filename, 'rb'))
     return response
 """
+
 def download(request, path):
+    print("[views] masuk download, path = ", path)
     file_path = os.path.join(settings.MEDIA_ROOT, path)
     if os.path.exists(file_path):
+        print("os.path.exists({})".format(file_path))
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type='application/datasetupload')
             response['Content-Disposition'] = 'inline;filename=' + os.path.basename(file_path)
             return response
 
     raise Http404
+
+"""
+def send_file(response):
+    img = open('', 'rb')
+    response = FileResponse(img)
+    return response
+"""

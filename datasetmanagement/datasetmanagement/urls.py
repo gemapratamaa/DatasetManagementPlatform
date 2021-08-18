@@ -30,6 +30,9 @@ urlpatterns = [
     path('download/', views.download_page, name='download'),
     url(r'^download/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT
+    }),
+    url(r'^datasets/datasets/(?P<path>.*)$', serve, {
+        'document_root' : settings.MEDIA_ROOT
     })
 ]
 
