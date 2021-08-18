@@ -40,7 +40,7 @@ class User(AbstractBaseUser):
     email = models.CharField(
         verbose_name='email address',
         max_length=255,
-        unique=True,)
+        unique=True)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
@@ -89,7 +89,7 @@ class Task(models.Model):
     is_deleted = models.BooleanField(default=False)
 
 class Dataset(models.Model):
-    id = models.AutoField(primary_key=True)
+    file_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=300)
     file = models.FileField(
         upload_to='',
@@ -97,9 +97,11 @@ class Dataset(models.Model):
     )
     uploader = models.ForeignKey(
         'User',
+        to_field='email',
+        #default='gemapratamaa@gmail.com', # ???
         on_delete=models.CASCADE,
     )
-    
+
     def __str__(self):
         return "[{}] {}".format(self.id, self.name)
 

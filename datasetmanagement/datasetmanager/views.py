@@ -43,11 +43,21 @@ def upload_page(request):
         form = DatasetUploadForm(request.POST, request.FILES)
         if form.is_valid():
             user_email = request.user.email # SUKSES
+            uploader = User.objects.get(email=user_email)
+            print("uploader: ", uploader)
             print("user email/username: ", user_email)
+
             data_to_submit = form.save(commit=False)
             file_name = request.FILES['file'].name
+
             data_to_submit.name = file_name
+            data_to_submit.uploader = uploader
+            print("data_to_submit: ", data_to_submit, type(data_to_submit))
+            print("data uploader: ", data_to_submit.uploader, type(data_to_submit.uploader))
             data_to_submit.save()
+
+
+            
             print("[upload page] request.post: ", request.POST)
             print("[upload page] request.files: ", request.FILES)
             print("[upload page] request.files['file']: ", request.FILES['file'], type(request.FILES['file']))
