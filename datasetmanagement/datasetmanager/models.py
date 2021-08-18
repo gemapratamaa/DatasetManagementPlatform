@@ -3,13 +3,8 @@ from django.core.validators import FileExtensionValidator
 from django.contrib.auth.models import AbstractUser, BaseUserManager, AbstractBaseUser
 from django.forms import ModelForm
 
-# Create your models here.
-# class DatasetUser(models.Model):
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
-        """
-        Creates and saves a User with the given email and password.
-        """
         if not email:
             raise ValueError('Users must have an email address')
 
@@ -22,9 +17,6 @@ class UserManager(BaseUserManager):
         return user
 
     def create_staffuser(self, email, password):
-        """
-        Creates and saves a staff user with the given email and password.
-        """
         user = self.create_user(
             email,
             password=password,
@@ -34,9 +26,6 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password):
-        """
-        Creates and saves a superuser with the given email and password.
-        """
         user = self.create_user(
             email,
             password=password,
@@ -62,11 +51,9 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = []
 
     def get_full_name(self):
-        # The user is identified by their email address
         return self.email
 
     def get_short_name(self):
-        # The user is identified by their email address
         return self.email
 
     def __str__(self):
@@ -86,9 +73,6 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
-
-
-
 class Task(models.Model):
     name = models.CharField(max_length=30)
     user = models.ForeignKey(
@@ -107,17 +91,6 @@ class Task(models.Model):
 class Dataset(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=300)
-    """
-    user = models.ForeignKey(
-        'User',
-        on_delete=models.CASCADE,
-    )
-    """
-
-    # kalo upload_to datasets/, masuknya ke datasetmanagement\datasets_cdn\datasets, expectnya datasetmanagement\datasets_cdn\
-    # kalo gapake, masuknya ke datasetmanagement\datasets_cdn, tp pas donlot expectnya 
-
-
     file = models.FileField(
         upload_to='',
         validators=[FileExtensionValidator(allowed_extensions=['zip'])]
@@ -125,7 +98,6 @@ class Dataset(models.Model):
 
     def __str__(self):
         return "[{}] {}".format(self.id, self.name)
-        
 
 class DatasetUploadForm(ModelForm):
     class Meta: 

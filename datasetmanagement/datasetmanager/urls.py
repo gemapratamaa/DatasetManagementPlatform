@@ -24,8 +24,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', views.index, name='index'),
-    #path('/upload', views.upload, name='upload')
     url(r'download/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT
     })

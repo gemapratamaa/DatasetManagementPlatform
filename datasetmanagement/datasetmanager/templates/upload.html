@@ -1,13 +1,8 @@
-<!--
-<form id="uploadbanner" method="post" action="#">
-      <input id="fileupload" type="file" accept=".zip" />
-      <input type="submit" value="submit" id="submit" />
-</form>
--->
+
 {% block body %}
 <form action="." method="post" enctype="multipart/form-data"> 
     {% csrf_token %}    
     {{ form.as_p }}
-    <input type="submit" value="Upload"/>
+    <input type="submit" accept=".zip" value="Upload"/>
 </form>
 {% endblock %}

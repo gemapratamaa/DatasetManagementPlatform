@@ -28,12 +28,7 @@ urlpatterns = [
     path('upload/', views.upload_page, name='upload'),
     path('login/', views.login_page, name='login'),
     path('download/', views.download_page, name='download'),
-    url(r'^download/(?P<path>.*)$', serve, {
-        'document_root' : settings.MEDIA_ROOT
-    }),
     url(r'^datasets/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT
     })
 ]
-
- #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
