@@ -15,15 +15,19 @@ A simple dataset management platform, with authentication system. Accounts are p
 # How To Install and Run
 
 1. Install [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/), depending on your Operating System.
-2. Build the application.
+2. Go inside `datasetmanagement` folder, where `docker-compose.yml` and `Dockerfile` are located.
+  ```
+  $ cd datasetmanagement
+  ```
+3. Build the application.
   ```
   $ docker-compose build
   ```
-3. Run the application.
+4. Run the application.
   ```
   $ docker-compose up
   ```
-4. Open `localhost:8000` on your web browser.
+5. Open `localhost:8000` on your web browser.
 
 # Accounts
 
