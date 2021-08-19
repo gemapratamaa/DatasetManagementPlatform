@@ -92,14 +92,14 @@ def handle_task(request, action: str, task_id: int):
         print("[handle_task] target task: ", task)
         if action == 'book':
             print("[handle_task] [book] user:", request.user)
-            print("[handle_task] bookers before booking:", task.booker.all())
-            task.booker.add(request.user)
-            print("[handle_task] bookers after booking:", task.booker.all())
+            print("[handle_task] bookers before booking:", task.booker)
+            task.booker = request.user
+            print("[handle_task] bookers after booking:", task.booker)
         elif action == 'revoke':
             print("[handle_task] [revoke] user:", request.user)
-            print("[handle_task] bookers before revoke:", task.booker.all())
-            task.booker.remove(request.user) 
-            print("[handle_task] bookers after revoke:", task.booker.all())
+            print("[handle_task] bookers before revoke:", task.booker)
+            task.booker = None
+            print("[handle_task] bookers after revoke:", task.booker)
         elif action == 'delete':
             print("[handle_task] [delete] user:", request.user)
             print("[handle_task] before delete:", task.is_deleted)
@@ -110,19 +110,4 @@ def handle_task(request, action: str, task_id: int):
 
     arguments['datasets'] = Dataset.objects.all()
     return render(request, 'task_list.html', arguments)
-        
-"""
-def revoke_task(request, task_id):
-    if request.method == 'GET':
-        print("[views] revoke_task")
-        task = Dataset.objects.get(id=task_id)
-        
-    return render(request, 'download.html')
-# Soft delete
-def delete_task(request, task_id):
-    if request.method == 'GET':
-        print("[views] delete_task")
-        task = Dataset.objects.get(id=task_id)
-        
-    return render(request, 'download.html')
-"""
+    
