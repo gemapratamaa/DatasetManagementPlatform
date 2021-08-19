@@ -2,7 +2,8 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'datasetmanager/css/download.css' %}">
 
-<title>Download Page</title>  
+<title>Task List Page</title>  
+<h1>Task List</h1>
 <table>
     <tr>
         <th>Task</th>
@@ -39,9 +40,7 @@
     {% endfor %}
 </table>
 
-{% if user.is_authenticated %}
 <footer>
     <p>You are logged in as {{ user.email }}</p>
     <a href="/">Back to home</a>
 </footer> 
-{% endif %}

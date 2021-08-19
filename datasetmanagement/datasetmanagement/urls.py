@@ -18,7 +18,7 @@ urlpatterns = [
     path('upload_success', views.upload_success, name='upload_success'),
     path('task_list/', views.task_list, name='task_list'),
     path('task_list/<str:action>/<int:task_id>', views.handle_task, name='handle'),
-   
+    path('accounts/login/', views.login_page, name='login'),
     url(r'^datasets/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT
     })

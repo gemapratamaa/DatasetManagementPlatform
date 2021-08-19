@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <title>Upload Page</title>  
+
+<h1>Dataset Upload</h1>
 <form action="." method="post" enctype="multipart/form-data"> 
     {% csrf_token %}    
     {{ form.as_p }}
     <input type="submit" accept=".zip" value="Upload"/>
 </form>
+
+<footer>
+    <p>You are logged in as {{ user.email }}</p>
+    <a href="/">Back to home</a>
+</footer> 
