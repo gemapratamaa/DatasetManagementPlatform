@@ -89,7 +89,7 @@ class Task(models.Model):
     is_deleted = models.BooleanField(default=False)
 
 class Dataset(models.Model):
-    file_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=300)
     file = models.FileField(
         upload_to='',
@@ -102,9 +102,10 @@ class Dataset(models.Model):
         on_delete=models.CASCADE,
     )
     booker = models.ManyToManyField(User)
+    is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return "[{}] {}".format(self.file_id, self.name)
+        return "[id:{}] {}, booker={}".format(self.id, self.name, self.booker)
 
 class DatasetUploadForm(ModelForm):
     class Meta: 

@@ -3,10 +3,10 @@
 <body>
 <title>Home</title>  
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.email }} !</p>       
+    <p>Welcome, {{ user.email }}!</p>       
     <a href="/upload">Upload dataset</a>
     </br>
-    <a href="/download">View tasks...</a>
+    <a href="/task_list">View tasks</a>
     </br>
     <a href="/logout">Logout</a>
     </br>

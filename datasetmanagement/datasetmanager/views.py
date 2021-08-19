@@ -70,20 +70,59 @@ def upload_page(request):
     return render(request, 'upload.html', arguments)
 
 @login_required
-def download_page(request):
+def task_list(request):
     datasets = Dataset.objects.all()
     arguments = {
         'datasets' : datasets
     }
-    return render(request, 'download.html', arguments)
+    return render(request, 'task_list.html', arguments)
 
 @login_required
 def logout_view(request):
     logout(request)
     return redirect('/home')
 
-def revoke_task(request, task_id):
-    pass
 
+def handle_task(request, action: str, task_id: int):
+    arguments = dict()
+
+    if request.method == 'GET':
+        print("[views] handle task, task id: {}, action: {}".format(task_id, action))
+        task = Dataset.objects.get(id=task_id)
+        print("[handle_task] target task: ", task)
+        if action == 'book':
+            print("[handle_task] [book] user:", request.user)
+            print("[handle_task] bookers before booking:", task.booker)
+            task.booker.add(request.user)
+            print("[handle_task] bookers after booking:", task.booker)
+        elif action == 'revoke':
+            print("[handle_task] [revoke] user:", request.user)
+            print("[handle_task] bookers before revoke:", task.booker)
+            task.booker.remove(request.user) 
+            print("[handle_task] bookers after revoke:", task.booker)
+        elif action == 'delete':
+            print("[handle_task] [delete] user:", request.user)
+            print("[handle_task] before delete:", task.is_deleted)
+            task.is_deleted = True
+            print("[handle_task] after delete:", task.is_deleted)
+            
+        task.save()
+
+    arguments['datasets'] = Dataset.objects.all()
+    return render(request, 'task_list.html', arguments)
+        
+"""
+def revoke_task(request, task_id):
+    if request.method == 'GET':
+        print("[views] revoke_task")
+        task = Dataset.objects.get(id=task_id)
+        
+    return render(request, 'download.html')
+# Soft delete
 def delete_task(request, task_id):
-    pass
+    if request.method == 'GET':
+        print("[views] delete_task")
+        task = Dataset.objects.get(id=task_id)
+        
+    return render(request, 'download.html')
+"""
