@@ -14,7 +14,14 @@
         <tr>
             <td>{{ task.name }}</td>
             <td>{{ task.uploader }}</td>
-            <td>Yes</td>
+
+            {% if task.booker == user %}
+                <td>Yes</td>
+            {% else %}
+                <td>No</td>
+            {% endif %}
+
+
             <td><a href="{{ task.file.url }}" download >Download</a> 
             | <a href="/task_list/book/{{ task.id }}">Book</a> 
             | <a href="/task_list/revoke/{{ task.id }}">Revoke booking</a> 
