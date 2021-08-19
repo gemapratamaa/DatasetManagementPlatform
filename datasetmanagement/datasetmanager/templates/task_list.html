@@ -21,12 +21,17 @@
                 <td>No</td>
             {% endif %}
 
-
-            <td><a href="{{ task.file.url }}" download >Download</a> 
-            | <a href="/task_list/book/{{ task.id }}">Book</a> 
-            | <a href="/task_list/revoke/{{ task.id }}">Revoke booking</a> 
-            | <a href="/task_list/delete/{{ task.id }}">Delete</a>
-            </td>
+            {% if task.booker == user %}
+                <td>
+                    <a href="{{ task.file.url }}" download >Download</a> 
+                    | <a href="/task_list/revoke/{{ task.id }}">Revoke booking</a> 
+                </td>
+            {% else %}
+                <td>
+                    <a href="/task_list/book/{{ task.id }}">Book</a> 
+                    | <a href="/task_list/delete/{{ task.id }}">Delete</a>
+                </td>
+            {% endif %}
         </tr>
     {% endfor %}
 </table>
