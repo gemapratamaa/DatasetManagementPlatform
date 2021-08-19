@@ -101,7 +101,13 @@ class Dataset(models.Model):
         related_name='uploader',
         on_delete=models.CASCADE,
     )
-    booker = models.ManyToManyField(User)
+    booker = models.ForeignKey(
+        'User',
+        to_field='email',
+        related_name='booker',
+        on_delete=models.CASCADE,
+        null=True
+    )
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
