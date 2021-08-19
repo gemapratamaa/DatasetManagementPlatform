@@ -105,7 +105,8 @@ class Dataset(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return "[id:{}] {}, booker={}".format(self.id, self.name, self.booker)
+        return "[id:{}] {}".format(self.id, self.name)
+        #return "[id:{}] {}, booker={}".format(self.id, self.name, self.booker.all)
 
 class DatasetUploadForm(ModelForm):
     class Meta: 

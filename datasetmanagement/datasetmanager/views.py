@@ -92,20 +92,20 @@ def handle_task(request, action: str, task_id: int):
         print("[handle_task] target task: ", task)
         if action == 'book':
             print("[handle_task] [book] user:", request.user)
-            print("[handle_task] bookers before booking:", task.booker)
+            print("[handle_task] bookers before booking:", task.booker.all())
             task.booker.add(request.user)
-            print("[handle_task] bookers after booking:", task.booker)
+            print("[handle_task] bookers after booking:", task.booker.all())
         elif action == 'revoke':
             print("[handle_task] [revoke] user:", request.user)
-            print("[handle_task] bookers before revoke:", task.booker)
+            print("[handle_task] bookers before revoke:", task.booker.all())
             task.booker.remove(request.user) 
-            print("[handle_task] bookers after revoke:", task.booker)
+            print("[handle_task] bookers after revoke:", task.booker.all())
         elif action == 'delete':
             print("[handle_task] [delete] user:", request.user)
             print("[handle_task] before delete:", task.is_deleted)
             task.is_deleted = True
             print("[handle_task] after delete:", task.is_deleted)
-            
+
         task.save()
 
     arguments['datasets'] = Dataset.objects.all()
