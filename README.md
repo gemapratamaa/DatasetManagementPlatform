@@ -9,7 +9,7 @@ A simple dataset management platform, with authentication system. Accounts are p
 - User can revoke their own booking.
 - A booked dataset can be downloaded, but only by a user who booked it.
 - Any user can delete any uploaded dataset.
-
+- Sample `.zip` files are provided in the `sample_zip` folder.
 
 # Requirements
 Django v3.2.6
