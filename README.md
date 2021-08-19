@@ -39,3 +39,6 @@ A simple dataset management platform, with authentication system. Accounts are p
 | dummy@dummy.com   | dummy       |
 
 # Heroku Link
+```
+https://datasetmanagementplatform.herokuapp.com/
+```
