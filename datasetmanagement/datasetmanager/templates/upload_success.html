@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <title>Upload successful!</title>  
 {% if user.is_authenticated %}
+    You upload was successful!
+    </br>
     <a href="/">Back to home</a>
+    <footer>
+        <p>You are logged in as {{ user.email }}</p>
+    </footer> 
 {% else %}
     Unauthorized access
 {% endif %}

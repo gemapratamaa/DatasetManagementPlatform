@@ -1,6 +1,24 @@
 <!DOCTYPE html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
 <title>Download Page</title>  
-{% for dataset in datasets %}
-    <a href="{{ dataset.file.url }}" download>{{ dataset.name }}</a>
-    </br>
-{% endfor %}
+<table>
+    <tr>
+        <th>Dataset</th>
+        <th>Uploaded by</th>
+    </tr>
+    {% for dataset in datasets %}
+        <tr>
+            <td><a href="{{ dataset.file.url }}" download> {{ dataset.name }} </a></td>
+            <td>{{ dataset.uploader }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% if user.is_authenticated %}
+<footer>
+    <p>You are logged in as {{ user.email }}</p>
+    <a href="/">Back to home</a>
+</footer> 
+{% endif %}
