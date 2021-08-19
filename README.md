@@ -16,7 +16,18 @@ Django v3.2.6
 Python v3.9.5
 
 # How To Install and Run
-lorem ipsum
+
+1. Install [Docker Engine](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/), depending on your Operating System.
+2. Build the application.
+  ```
+  $ docker-compose build
+  ```
+3. Run the application.
+  ```
+  $ docker-compose up
+  ```
+4. Open `localhost:8000` on your web browser.
+
 # Accounts
 
 | Email    | Password |
@@ -25,4 +36,5 @@ lorem ipsum
 | ben@ben.com   | ben       |
 | clara@clara.com   | clara      |
 | dummy@dummy.com   | dummy       |
+
 # Heroku Link
