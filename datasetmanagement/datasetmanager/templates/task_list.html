@@ -11,6 +11,7 @@
         <th>Action</th>
     </tr>
     {% for task in datasets %}
+        {% if not task.is_deleted %}
         <tr>
             <td>{{ task.name }}</td>
             <td>{{ task.uploader }}</td>
@@ -20,18 +21,20 @@
             {% else %}
                 <td>No</td>
             {% endif %}
-
-            {% if task.booker == user %}
-                <td>
-                    <a href="{{ task.file.url }}" download >Download</a> 
-                    | <a href="/task_list/revoke/{{ task.id }}">Revoke booking</a> 
-                </td>
-            {% else %}
-                <td>
-                    <a href="/task_list/book/{{ task.id }}">Book</a> 
-                    | <a href="/task_list/delete/{{ task.id }}">Delete</a>
-                </td>
-            {% endif %}
+                {% if task.booker == user %}
+                    <td>
+                        <a href="{{ task.file.url }}" download >Download</a> 
+                        | <a href="/task_list/revoke/{{ task.id }}">Revoke booking</a> 
+                        | <a href="/task_list/delete/{{ task.id }}">Delete</a>
+                    </td>
+                {% else %}
+                    <td>
+                        <a href="/task_list/book/{{ task.id }}">Book</a> 
+                        | <a href="/task_list/delete/{{ task.id }}">Delete</a>
+                    </td>
+                {% endif %}
+                
+        {% endif %}
         </tr>
     {% endfor %}
 </table>
