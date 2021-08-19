@@ -77,7 +77,6 @@ def logout_view(request):
 @login_required
 def handle_task(request, action: str, task_id: int):
     arguments = dict()
-
     if request.method == 'GET':
         task = Dataset.objects.get(id=task_id)
         if action == 'book':
@@ -90,5 +89,5 @@ def handle_task(request, action: str, task_id: int):
         task.save()
 
     arguments['datasets'] = Dataset.objects.all()
-    
+
     return render(request, 'task_list.html', arguments)
