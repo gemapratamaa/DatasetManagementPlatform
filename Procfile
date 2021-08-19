@@ -1,1 +1,1 @@
-web: gunicorn datasetmanagement.wsgi
+web: gunicorn --pythonpath datasetmanagement datasetmanagement.wsgi
