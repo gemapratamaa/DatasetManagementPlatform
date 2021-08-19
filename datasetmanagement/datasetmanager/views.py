@@ -85,7 +85,6 @@ def logout_view(request):
 
 def handle_task(request, action: str, task_id: int):
     arguments = dict()
-
     if request.method == 'GET':
         print("[views] handle task, task id: {}, action: {}".format(task_id, action))
         task = Dataset.objects.get(id=task_id)
@@ -93,7 +92,11 @@ def handle_task(request, action: str, task_id: int):
         if action == 'book':
             print("[handle_task] [book] user:", request.user)
             print("[handle_task] bookers before booking:", task.booker)
-            task.booker = request.user
+            if task.booker:
+                print("udah dibook sama", task.booker)
+            else:
+                print("blm dibook")
+                task.booker = request.user
             print("[handle_task] bookers after booking:", task.booker)
         elif action == 'revoke':
             print("[handle_task] [revoke] user:", request.user)

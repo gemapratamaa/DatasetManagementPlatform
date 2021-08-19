@@ -8,7 +8,7 @@
     <tr>
         <th>Task</th>
         <th>Uploaded by</th>
-        <th>Did you book this task?</th>
+        <th>Booked by</th>
         <th>Action</th>
     </tr>
     {% for task in datasets %}
@@ -16,12 +16,7 @@
         <tr>
             <td>{{ task.name }}</td>
             <td>{{ task.uploader }}</td>
-
-            {% if task.booker == user %}
-                <td>Yes</td>
-            {% else %}
-                <td>No</td>
-            {% endif %}
+            <td>{{ task.booker }}</td>
                 {% if task.booker == user %}
                     <td>
                         <a href="{{ task.file.url }}" download >Download</a> 
@@ -29,12 +24,17 @@
                         | <a href="/task_list/delete/{{ task.id }}">Delete</a>
                     </td>
                 {% else %}
-                    <td>
-                        <a href="/task_list/book/{{ task.id }}">Book</a> 
-                        | <a href="/task_list/delete/{{ task.id }}">Delete</a>
-                    </td>
+                    {% if not task.booker %}
+                        <td>
+                            <a href="/task_list/book/{{ task.id }}">Book</a> 
+                            | <a href="/task_list/delete/{{ task.id }}">Delete</a>
+                        </td>
+                    {% else %}
+                        <td>
+                            <a href="/task_list/delete/{{ task.id }}">Delete</a>
+                        </td>
+                    {% endif %}
                 {% endif %}
-                
         {% endif %}
         </tr>
     {% endfor %}
