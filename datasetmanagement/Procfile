@@ -1,1 +1,1 @@
-web: gunicorn datasetmanagement.wsgi --log-file -
+web gunicorn datasetmanagement.wsgi --log-file -
