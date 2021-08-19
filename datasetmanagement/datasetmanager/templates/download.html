@@ -7,11 +7,15 @@
     <tr>
         <th>Dataset</th>
         <th>Uploaded by</th>
+        <th>Did you book this task?</th>
+        <th>Action</th>
     </tr>
     {% for dataset in datasets %}
         <tr>
-            <td><a href="{{ dataset.file.url }}" download> {{ dataset.name }} </a></td>
+            <td>{{ dataset.name }}</td>
             <td>{{ dataset.uploader }}</td>
+            <td>Yes</td>
+            <td><a href="{{ dataset.file.url }}" download >Download</a> | <a href="#">Revoke booking</a> | <a href="#">Delete</a></td>
         </tr>
     {% endfor %}
 </table>

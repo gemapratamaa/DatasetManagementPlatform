@@ -98,9 +98,10 @@ class Dataset(models.Model):
     uploader = models.ForeignKey(
         'User',
         to_field='email',
-        #default='gemapratamaa@gmail.com', # ???
+        related_name='uploader',
         on_delete=models.CASCADE,
     )
+    booker = models.ManyToManyField(User)
 
     def __str__(self):
         return "[{}] {}".format(self.file_id, self.name)

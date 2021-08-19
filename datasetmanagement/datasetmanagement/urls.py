@@ -17,6 +17,8 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('upload_success', views.upload_success, name='upload_success'),
     path('download/', views.download_page, name='download'),
+    path('revoke_task/<int:task_id>', views.revoke_task, name='revoke'),
+    path('delete_task/<int:task_id>', views.delete_task, name='delete'),
     url(r'^datasets/(?P<path>.*)$', serve, {
         'document_root' : settings.MEDIA_ROOT
     })

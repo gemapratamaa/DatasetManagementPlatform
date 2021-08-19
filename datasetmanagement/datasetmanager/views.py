@@ -81,3 +81,9 @@ def download_page(request):
 def logout_view(request):
     logout(request)
     return redirect('/home')
+
+def revoke_task(request, task_id):
+    pass
+
+def delete_task(request, task_id):
+    pass
