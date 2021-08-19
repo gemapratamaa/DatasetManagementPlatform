@@ -42,8 +42,8 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True)
     is_active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
+    staff = models.BooleanField(default=False)
+    admin = models.BooleanField(default=False)
     
     objects = UserManager()
 
@@ -73,20 +73,6 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
-class Task(models.Model):
-    name = models.CharField(max_length=30)
-    user = models.ForeignKey(
-        'User',
-        on_delete=models.CASCADE,
-    )
-    file = models.FileField(
-        upload_to='tasks/', 
-        validators=[
-            FileExtensionValidator(allowed_extensions=['zip'])
-        ]
-    )
-
-    is_deleted = models.BooleanField(default=False)
 
 class Dataset(models.Model):
     id = models.AutoField(primary_key=True)
@@ -112,7 +98,7 @@ class Dataset(models.Model):
 
     def __str__(self):
         return "[id:{}] {}".format(self.id, self.name)
-        #return "[id:{}] {}, booker={}".format(self.id, self.name, self.booker.all)
+
 
 class DatasetUploadForm(ModelForm):
     class Meta: 
