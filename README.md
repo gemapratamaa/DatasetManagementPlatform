@@ -11,9 +11,6 @@ A simple dataset management platform, with authentication system. Accounts are p
 - Any user can delete any uploaded dataset.
 - Sample `.zip` files are provided in the `sample_zip` folder.
 
-# Requirements
-Django v3.2.6
-Python v3.9.5
 
 # How To Install and Run
 
