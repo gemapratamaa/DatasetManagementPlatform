@@ -7,8 +7,6 @@ from django.urls import reverse
 from datasetmanagement import settings
 from django.contrib.auth.decorators import login_required
 
-import os
-
 def index_page(request):
     return render(request, 'index.html')
 
@@ -83,6 +81,7 @@ def logout_view(request):
     return redirect('/home')
 
 
+@login_required
 def handle_task(request, action: str, task_id: int):
     arguments = dict()
     if request.method == 'GET':
