@@ -21,11 +21,11 @@ A simple dataset management platform, with authentication system. Accounts are p
   ```
 3. Build the application.
   ```
-  $ docker-compose build
+  $ sudo docker-compose build
   ```
 4. Run the application.
   ```
-  $ docker-compose up
+  $ sudo docker-compose up
   ```
 5. Open `localhost:8000` on your web browser.
 
